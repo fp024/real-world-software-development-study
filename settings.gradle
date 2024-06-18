@@ -1,0 +1,13 @@
+/********************************************
+ * Real-World Software Development - 스터디 *
+ * 실전 자바 소프트웨어 개발                *
+ ********************************************/
+
+rootProject.name = "real-world-software-development-study"
+
+/* ===== Chapter 1 여행의 시작 ===== */
+// 예제 프로젝트를 만들지 않음.
+
+
+/* ===== Chapter 2 입출금 내역 분석기 ===== */
+include "chap02"
