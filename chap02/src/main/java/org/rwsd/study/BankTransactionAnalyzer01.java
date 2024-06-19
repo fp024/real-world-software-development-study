@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.parser.BankStatementCSVParser;
 import org.rwsd.study.parser.BankStatementParser;
@@ -14,6 +16,7 @@ import org.rwsd.study.util.CommonUtil;
 /*
   예제 2-5: BankTransactionAnalyzerSimple의 첫번째 개선
 */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BankTransactionAnalyzer01 {
   public static void main(String[] args) throws IOException {
     final BankStatementParser bankStatementCSVParser = new BankStatementCSVParser();

@@ -7,8 +7,11 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.rwsd.study.util.CommonUtil;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BankTransactionAnalyzerSimple {
   public static void main(String[] args) throws IOException {
     final Path path = CommonUtil.getFilePathFromResources(args[0]);
