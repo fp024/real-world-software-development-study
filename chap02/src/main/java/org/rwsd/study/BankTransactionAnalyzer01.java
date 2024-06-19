@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.parser.BankStatementCSVParser;
+import org.rwsd.study.parser.BankStatementParser;
 import org.rwsd.study.util.CommonUtil;
 
 /*
@@ -15,12 +16,12 @@ import org.rwsd.study.util.CommonUtil;
 */
 public class BankTransactionAnalyzer01 {
   public static void main(String[] args) throws IOException {
-    final BankStatementCSVParser bankStatementCSVParser = new BankStatementCSVParser();
+    final BankStatementParser bankStatementCSVParser = new BankStatementCSVParser();
 
     final Path path = CommonUtil.getFilePathFromResources(args[0]);
     final List<String> lines = Files.readAllLines(path);
 
-    final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLinesFromCSV(lines);
+    final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLinesFrom(lines);
 
     System.out.println(
         "The total for all transactions is " + calculateTotalAmount(bankTransactions));

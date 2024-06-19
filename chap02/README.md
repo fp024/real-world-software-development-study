@@ -55,4 +55,5 @@ gradle clean run --args="bank-data-simple.csv"
 
 ## 정오표
 
-* ...
+* p36: 예제 2-9 소스코드
+  * update 메서드와 delete의 파라미터 인자가 뒤 바뀐 것 같다.

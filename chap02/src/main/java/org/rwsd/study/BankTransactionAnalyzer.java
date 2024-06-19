@@ -6,23 +6,22 @@ import java.nio.file.Path;
 import java.time.Month;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
-import org.rwsd.study.parser.BankStatementCSVParser;
 import org.rwsd.study.parser.BankStatementParser;
 import org.rwsd.study.processor.BankStatementProcessor;
 import org.rwsd.study.util.CommonUtil;
 
 /*
-  예제 2-8: BankTransactionAnalyzerSimple의 두번째 개선
-  - BankStatementProcessor 클래스를 애용해 입출금 내역 목록 처리
+  예제 2-12 BankStatementAnalyzer에서 특정 파서와의 결합제거
 */
-public class BankTransactionAnalyzer02 {
-  public static void main(String[] args) throws IOException {
-    final BankStatementParser bankStatementCSVParser = new BankStatementCSVParser();
+public class BankTransactionAnalyzer {
 
-    final Path path = CommonUtil.getFilePathFromResources(args[0]);
+  public void analyzer(String fileName, final BankStatementParser bankStatementParser)
+      throws IOException {
+
+    final Path path = CommonUtil.getFilePathFromResources(fileName);
     final List<String> lines = Files.readAllLines(path);
 
-    final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLinesFrom(lines);
+    final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
     final BankStatementProcessor bankStatementProcessor =
         new BankStatementProcessor(bankTransactions);

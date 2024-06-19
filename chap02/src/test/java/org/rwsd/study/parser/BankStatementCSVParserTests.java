@@ -9,13 +9,13 @@ import org.rwsd.study.domain.BankTransaction;
 
 class BankStatementCSVParserTests {
 
-  private BankStatementCSVParser parser = new BankStatementCSVParser();
+  private BankStatementParser parser = new BankStatementCSVParser();
 
   @Test
   void testParseLinesFromCSV() {
 
     List<BankTransaction> result =
-        parser.parseLinesFromCSV(List.of("30-01-2017,-100,Deliveroo", "30-01-2017,-50,Tesco"));
+        parser.parseLinesFrom(List.of("30-01-2017,-100,Deliveroo", "30-01-2017,-50,Tesco"));
 
     assertThat(result).hasSize(2);
 
