@@ -13,7 +13,7 @@ import org.rwsd.study.util.CommonUtil;
 /*
   예제 2-5: BankTransactionAnalyzerSimple의 첫번째 개선
 */
-public class BankTransactionAnalyzerSimple01 {
+public class BankTransactionAnalyzer01 {
   public static void main(String[] args) throws IOException {
     final BankStatementCSVParser bankStatementCSVParser = new BankStatementCSVParser();
 
