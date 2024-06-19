@@ -24,7 +24,7 @@ dependencies {
 }
 
 application {
-  mainClass = 'org.rwsd.study.BankTransactionAnalyzerSimple'
+  mainClass = 'org.rwsd.study.BankTransactionAnalyzerSimple01'
 }
 
 tasks.named('test') {

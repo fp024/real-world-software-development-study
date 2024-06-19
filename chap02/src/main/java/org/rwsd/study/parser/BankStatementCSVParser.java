@@ -1,4 +1,4 @@
-package org.rwsd.study;
+package org.rwsd.study.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

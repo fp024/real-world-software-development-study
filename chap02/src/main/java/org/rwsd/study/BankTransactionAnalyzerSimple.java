@@ -1,18 +1,17 @@
 package org.rwsd.study;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.rwsd.study.util.CommonUtil;
 
 public class BankTransactionAnalyzerSimple {
   public static void main(String[] args) throws IOException {
-    final Path path = getCsvPath(args[0]);
+    final Path path = CommonUtil.getFilePathFromResources(args[0]);
     final List<String> lines = Files.readAllLines(path);
 
     double total = 0d;
@@ -29,14 +28,5 @@ public class BankTransactionAnalyzerSimple {
     }
 
     System.out.println("The total for all transactions in January is " + total);
-  }
-
-  private static Path getCsvPath(String fileName) {
-    URL resource = BankTransactionAnalyzerSimple.class.getResource("/" + fileName);
-    try {
-      return Path.of(resource.toURI());
-    } catch (URISyntaxException e) {
-      throw new IllegalArgumentException(e);
-    }
   }
 }
