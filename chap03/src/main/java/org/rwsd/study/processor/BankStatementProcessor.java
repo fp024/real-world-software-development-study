@@ -4,6 +4,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
+import org.rwsd.study.function.BankTransactionFilter;
 
 public class BankStatementProcessor {
 
@@ -69,6 +70,17 @@ public class BankStatementProcessor {
     final List<BankTransaction> result = new ArrayList<>();
     for (BankTransaction bankTransaction : bankTransactions) {
       if (bankTransaction.getAmount() >= amount && bankTransaction.getDate().getMonth() == month) {
+        result.add(bankTransaction);
+      }
+    }
+    return result;
+  }
+
+  // 예제 3-5. 개방/패쇄 원칙을 적용한 후 유연해진 findTransactions() 메서드
+  public List<BankTransaction> findTransactions(final BankTransactionFilter bankTransactionFilter) {
+    final List<BankTransaction> result = new ArrayList<>();
+    for (BankTransaction bankTransaction : bankTransactions) {
+      if (bankTransactionFilter.test(bankTransaction)) {
         result.add(bankTransaction);
       }
     }

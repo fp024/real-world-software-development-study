@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.rwsd.study.domain.BankTransaction;
+import org.rwsd.study.function.BankTransactionIsFebruaryAndExpensive;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class BankStatementProcessorTests {
@@ -76,5 +77,32 @@ class BankStatementProcessorTests {
     assertThat(result.get(0)) //
         .hasFieldOrPropertyWithValue("date.month", Month.FEBRUARY)
         .hasFieldOrPropertyWithValue("amount", 6000d);
+  }
+
+  @Test
+  void testBankTransactionIsFebruaryAndExpensive() {
+    List<BankTransaction> result =
+        processor.findTransactions(new BankTransactionIsFebruaryAndExpensive());
+
+    assertThat(result).hasSize(3);
+    result.forEach(
+        r -> {
+          assertThat(r.getDate().getMonth()).isSameAs(Month.FEBRUARY);
+          assertThat(r.getAmount()).isGreaterThanOrEqualTo(1_000);
+        });
+  }
+
+  @Test
+  void testShouldFilterTransactionsInFebruaryAndGraterEqualThen1000() {
+    List<BankTransaction> result =
+        processor.findTransactions(
+            bt -> bt.getDate().getMonth() == Month.FEBRUARY && bt.getAmount() >= 1_000);
+
+    assertThat(result).hasSize(3);
+    result.forEach(
+        r -> {
+          assertThat(r.getDate().getMonth()).isSameAs(Month.FEBRUARY);
+          assertThat(r.getAmount()).isGreaterThanOrEqualTo(1_000);
+        });
   }
 }
