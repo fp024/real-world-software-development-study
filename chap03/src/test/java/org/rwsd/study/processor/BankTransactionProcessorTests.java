@@ -71,7 +71,7 @@ class BankTransactionProcessorTests {
   @Test
   void testFindTransactionsInMonthAndGreater() {
     List<BankTransaction> result =
-        processor.findTransactionsInMonthAndGreater(Month.FEBRUARY, 6000);
+        processor.findTransactionsInMonthAndGreaterThenEqual(Month.FEBRUARY, 6000);
 
     assertThat(result).hasSize(1);
     assertThat(result.get(0)) //
