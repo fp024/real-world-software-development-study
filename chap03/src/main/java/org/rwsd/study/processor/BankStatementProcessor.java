@@ -1,6 +1,7 @@
 package org.rwsd.study.processor;
 
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
 
@@ -38,5 +39,39 @@ public class BankStatementProcessor {
       }
     }
     return total;
+  }
+
+  // 예제 3-1. 특정 금액 이상의 은행 거래 내역 찾기
+  public List<BankTransaction> findTransactionsGreaterThanEqual(final int amount) {
+    final List<BankTransaction> result = new ArrayList<>();
+    for (BankTransaction bankTransaction : bankTransactions) {
+      if (bankTransaction.getAmount() >= amount) {
+        result.add(bankTransaction);
+      }
+    }
+    return result;
+  }
+
+  // 예제 3-2. 특정 월의 입출금 내역 찾기
+  public List<BankTransaction> findTransactionsInMonth(final Month month) {
+    final List<BankTransaction> result = new ArrayList<>();
+    for (BankTransaction bankTransaction : bankTransactions) {
+      if (bankTransaction.getDate().getMonth() == month) {
+        result.add(bankTransaction);
+      }
+    }
+    return result;
+  }
+
+  // 예제 3-3. 특정 월이나 금액으로 입출금 내역 검색하기
+  public List<BankTransaction> findTransactionsInMonthAndGreater(
+      final Month month, final int amount) {
+    final List<BankTransaction> result = new ArrayList<>();
+    for (BankTransaction bankTransaction : bankTransactions) {
+      if (bankTransaction.getAmount() >= amount && bankTransaction.getDate().getMonth() == month) {
+        result.add(bankTransaction);
+      }
+    }
+    return result;
   }
 }

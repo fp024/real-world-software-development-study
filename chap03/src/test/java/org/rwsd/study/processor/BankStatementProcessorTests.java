@@ -50,4 +50,31 @@ class BankStatementProcessorTests {
     assertThat(processor.calculateTotalInMonth(Month.FEBRUARY)) //
         .isEqualTo(6970);
   }
+
+  @Test
+  void testFindTransactionsGreaterThanEqual() {
+    List<BankTransaction> result = processor.findTransactionsGreaterThanEqual(3000);
+
+    assertThat(result).hasSize(2);
+    result.forEach(r -> assertThat(r.getAmount()).isGreaterThanOrEqualTo(3000));
+  }
+
+  @Test
+  void testFindTransactionsInMonth() {
+    List<BankTransaction> result = processor.findTransactionsInMonth(Month.JANUARY);
+
+    assertThat(result).hasSize(2);
+    result.forEach(r -> assertThat(r.getDate().getMonth()).isSameAs(Month.JANUARY));
+  }
+
+  @Test
+  void testFindTransactionsInMonthAndGreater() {
+    List<BankTransaction> result =
+        processor.findTransactionsInMonthAndGreater(Month.FEBRUARY, 6000);
+
+    assertThat(result).hasSize(1);
+    assertThat(result.get(0)) //
+        .hasFieldOrPropertyWithValue("date.month", Month.FEBRUARY)
+        .hasFieldOrPropertyWithValue("amount", 6000d);
+  }
 }
