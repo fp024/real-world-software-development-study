@@ -13,11 +13,11 @@ import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.function.BankTransactionIsFebruaryAndExpensive;
 
 @TestInstance(Lifecycle.PER_CLASS)
-class BankStatementProcessorTests {
+class BankTransactionProcessorTests {
 
   private List<BankTransaction> bankTransactions;
 
-  private BankStatementProcessor processor;
+  private BankTransactionProcessor processor;
 
   @BeforeAll
   void init() {
@@ -31,7 +31,7 @@ class BankStatementProcessorTests {
             new BankTransaction(LocalDate.of(2017, 2, 3), 3000, "Tesco"),
             new BankTransaction(LocalDate.of(2017, 2, 5), -30, "Cinema"));
 
-    processor = new BankStatementProcessor(bankTransactions);
+    processor = new BankTransactionProcessor(bankTransactions);
   }
 
   @Test

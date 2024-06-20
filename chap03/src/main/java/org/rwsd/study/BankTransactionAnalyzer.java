@@ -7,7 +7,7 @@ import java.time.Month;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.parser.BankStatementParser;
-import org.rwsd.study.processor.BankStatementProcessor;
+import org.rwsd.study.processor.BankTransactionProcessor;
 import org.rwsd.study.util.CommonUtil;
 
 /*
@@ -23,13 +23,13 @@ public class BankTransactionAnalyzer {
 
     final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
-    final BankStatementProcessor bankStatementProcessor =
-        new BankStatementProcessor(bankTransactions);
+    final BankTransactionProcessor bankStatementProcessor =
+        new BankTransactionProcessor(bankTransactions);
 
     collectSummary(bankStatementProcessor);
   }
 
-  private static void collectSummary(BankStatementProcessor bankStatementProcessor) {
+  private static void collectSummary(BankTransactionProcessor bankStatementProcessor) {
     System.out.println(
         "The total for all transactions is " + bankStatementProcessor.calculateTotalAmount());
 

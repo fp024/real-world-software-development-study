@@ -6,11 +6,11 @@ import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.function.BankTransactionFilter;
 
-public class BankStatementProcessor {
+public class BankTransactionProcessor {
 
   private final List<BankTransaction> bankTransactions;
 
-  public BankStatementProcessor(List<BankTransaction> bankTransactions) {
+  public BankTransactionProcessor(List<BankTransaction> bankTransactions) {
     this.bankTransactions = bankTransactions;
   }
 

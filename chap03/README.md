@@ -39,8 +39,12 @@
 ## 정오표
 
 * 51쪽: 
-
   * 51쪽에 메서드가 추가되야할 클래스는 BankTransactionProcessor가 아니고,  BankStatementProcessor이다.
     * https://github.com/Iteratr-Learning/Real-World-Software-Development/blob/master/src/main/java/com/iteratrlearning/shu_book/chapter_03/BankStatementProcessor.java
-
-  
+* 55쪽:
+  * 예제 기준으로는 BankTransactionProcessor가 아니고,  BankStatementProcessor여야하는데, 그래서 Google Play Book에서 원서 일부를 샘플로 볼 수 있어서 봤는데, 거기도 BankTransactionProcessor로 되어있음. 😂
+    * 책이 예제 기준으로 더 다듬어져야할 것 같은데... 익숙하지 않은 사람이 보면 힘들 것 같다. 
+    * BankStatementXXX와 BankTransacion을 혼용하다가 저자님도 해깔리신 것 같다..
+      * 그냥 내가 클래스 명을 BankTransaction으로 바꿔버리는 게 나아보임. 
+      * CSV를 파싱하는 부분은 BankStatementXXX이름을 유지하는게 나을 것 같고,
+      * BankStatementProcessor -> BankTransactionProcessor 이렇게만 바꾸자..
