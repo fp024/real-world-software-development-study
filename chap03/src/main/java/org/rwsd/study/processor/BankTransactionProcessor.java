@@ -2,8 +2,10 @@ package org.rwsd.study.processor;
 
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import org.rwsd.study.domain.BankTransaction;
+import org.rwsd.study.domain.SummaryStatistics;
 import org.rwsd.study.function.BankTransactionFilter;
 import org.rwsd.study.function.BankTransactionSummarizer;
 
@@ -13,6 +15,19 @@ public class BankTransactionProcessor {
 
   public BankTransactionProcessor(List<BankTransaction> bankTransactions) {
     this.bankTransactions = bankTransactions;
+  }
+
+  public SummaryStatistics summarizeTransactions() {
+
+    // 💡 DoubleSummaryStatistics: Java 에 내장된 도메인이다.
+    final DoubleSummaryStatistics doubleSummaryStatistics =
+        bankTransactions.stream().mapToDouble(BankTransaction::getAmount).summaryStatistics();
+
+    return new SummaryStatistics(
+        doubleSummaryStatistics.getSum(),
+        doubleSummaryStatistics.getMax(),
+        doubleSummaryStatistics.getMin(),
+        doubleSummaryStatistics.getAverage());
   }
 
   public double summarizeTransactions(final BankTransactionSummarizer bankTransactionSummarizer) {

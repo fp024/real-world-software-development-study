@@ -8,10 +8,16 @@ logback = "1.5.6"
 junit-jupiter = "5.10.2"
 assertj = "3.26.0"
 
+jackson = "2.17.1"
+jackson-databind = "2.17.1"
+
 
 
 [libraries]
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback"}
+
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-databind" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
