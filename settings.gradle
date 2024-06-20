@@ -11,3 +11,7 @@ rootProject.name = "real-world-software-development-study"
 
 /* ===== Chapter 2 입출금 내역 분석기 ===== */
 include "chap02"
+
+
+/* ===== Chapter 3 입출금 내역 분석기 확장판 ===== */
+include "chap03"

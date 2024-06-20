@@ -1,0 +1,38 @@
+plugins {
+  id 'application'
+  alias(libs.plugins.lombok)
+}
+
+[compileJava, compileTestJava]*.options*.encoding = "${projectEncoding}"
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of("${javaVersion}")
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation libs.logback.classic
+
+  testImplementation libs.junit.jupiter
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  testImplementation libs.assertj.core
+}
+
+application {
+  mainClass = 'org.rwsd.study.MainApplication'
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+
+  testLogging {
+    outputs.upToDateWhen { false }
+    showStandardStreams = true
+  }
+}
+
