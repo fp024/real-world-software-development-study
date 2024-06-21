@@ -12,7 +12,7 @@ import org.rwsd.study.util.CommonUtil;
 
 public class BankTransactionAnalyzer {
 
-  public void analyzer(
+  public String analyzer(
       String fileName, final BankStatementParser bankStatementParser, final Exporter exporter)
       throws IOException {
 
@@ -24,6 +24,13 @@ public class BankTransactionAnalyzer {
     final BankTransactionProcessor bankStatementProcessor =
         new BankTransactionProcessor(bankTransactions);
 
-    System.out.println(exporter.export(bankStatementProcessor.summarizeTransactions()));
+    return exporter.export(bankStatementProcessor.summarizeTransactions());
+  }
+
+  public void analyzerThenConsolePrint(
+      String fileName, final BankStatementParser bankStatementParser, final Exporter exporter)
+      throws IOException {
+
+    System.out.println(this.analyzer(fileName, bankStatementParser, exporter));
   }
 }

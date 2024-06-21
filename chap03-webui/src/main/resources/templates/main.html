@@ -13,40 +13,51 @@
     <h2>3장 도전과제: 입출급 내역 분석기 프로그램에 GUI 추가</h2>
   </div>
   <div class="card-body">
-    <h5 class="card-title">입출급 내역 분석기 프로그램에 GUI 추가</h5>
-    <p>💡 csv 파일 업로드를 해서, HTML / JSON / XML 출력이 가능하게 해야할 것 같은데... 확실히 GUI가 들어가니까 어려워짐.. 😅</p>
-    <div class="mb-3">
-      <label for="formFile" class="form-label">CSV 파일 업로드</label>
-      <input class="form-control" type="file" id="formFile">
-    </div>
+    <h4 class="card-title">🎊입출급 내역 분석기 프로그램에 GUI 추가🎊</h4>
 
-    <h5>출력 방식</h5>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault1" checked>
-      <label class="form-check-label" for="flexRadioDefault1">
-        HTML
-      </label>
-    </div>
+    <form th:action="@{/main}" th:method="post">
+      <div class="mb-3">
+        <label for="csvFileName1" class="form-label">입출금 내역 CSV 파일명</label>
+        <input type="csvFileName" class="form-control" id="csvFileName1" aria-describedby="emailHelp"
+               th:name="csvFileName" th:value="bank-data-simple.csv">
+        <div id="csvFileNameHelp" class="form-text">💡 resources 경로의 파일명을 입력해주세요!</div>
+      </div>
 
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault2">
-      <label class="form-check-label" for="flexRadioDefault2">
-        JSON
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault3">
-      <label class="form-check-label" for="flexRadioDefault3">
-        XML
-      </label>
-    </div>
+      <h5>출력 방식</h5>
 
-    <div class="float-end">
-      <button type="button" class="btn btn-outline-primary">분석</button>
-      <button type="button" class="btn btn-outline-secondary">취소</button>
-    </div>
+      <div th:each="type : ${T(org.rwsd.study.domain.ReportType).values()}" class="form-check">
+        <input class="form-check-input" type="radio" th:name="reportType" th:value="${type}"
+               th:id="${'flexRadioDefault' + type.ordinal()}" th:checked="${type == reportType}">
+        <label class="form-check-label" th:for="${'flexRadioDefault' + type.ordinal()}">
+          <span th:text="${type}"></span>
+        </label>
+      </div>
+
+      <div class="float-end">
+        <button type="submit" class="btn btn-outline-primary">분석</button>
+      </div>
+    </form>
+
   </div>
 </div>
+<hr>
+<th:block th:if="${result != null}">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-text">💡
+        <th:block th:text="${reportType}"/>
+        타입의 출력 결과
+      </h5>
+    </div>
+    <th:block th:if="${reportType == T(org.rwsd.study.domain.ReportType).HTML}">
+      <iframe th:src="${result}"></iframe>
+    </th:block>
+    <th:block th:if="${reportType ne T(org.rwsd.study.domain.ReportType).HTML}">
+      <textarea class="form-control" th:text="${result}"></textarea>
+    </th:block>
+  </div>
+</th:block>
+
 
 </body>
 </html>

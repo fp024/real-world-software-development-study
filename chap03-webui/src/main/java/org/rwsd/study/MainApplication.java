@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.rwsd.study.exporter.Exporter;
 import org.rwsd.study.exporter.HtmlExporter;
 import org.rwsd.study.exporter.JsonExporter;
+import org.rwsd.study.exporter.XmlExporter;
 import org.rwsd.study.parser.BankStatementCSVParser;
 import org.rwsd.study.parser.BankStatementParser;
 
@@ -19,10 +20,14 @@ public class MainApplication {
 
     System.out.println("### HTML Export ###");
     final Exporter htmlExporter = new HtmlExporter();
-    bankTransactionAnalyzer.analyzer(args[0], bankStatementParser, htmlExporter);
+    bankTransactionAnalyzer.analyzerThenConsolePrint(args[0], bankStatementParser, htmlExporter);
 
     System.out.println("### JSON Export ###");
     final Exporter jsonExporter = new JsonExporter();
-    bankTransactionAnalyzer.analyzer(args[0], bankStatementParser, jsonExporter);
+    bankTransactionAnalyzer.analyzerThenConsolePrint(args[0], bankStatementParser, jsonExporter);
+
+    System.out.println("### XML Export ###");
+    final Exporter xmlExporter = new XmlExporter();
+    bankTransactionAnalyzer.analyzerThenConsolePrint(args[0], bankStatementParser, xmlExporter);
   }
 }

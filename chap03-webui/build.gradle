@@ -12,6 +12,10 @@ java {
   }
 }
 
+tasks.withType(JavaCompile) {
+  options.compilerArgs << '-parameters'
+}
+
 repositories {
   mavenCentral()
 }
@@ -32,6 +36,7 @@ dependencies {
   implementation (libs.logback.classic)
 
   implementation (libs.jackson.databind)
+  implementation (libs.jackson.dataformat.xml)
   implementation (libs.jackson.datatype.jsr310)
 
   testImplementation (libs.junit.jupiter)
