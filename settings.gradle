@@ -15,3 +15,4 @@ include "chap02"
 
 /* ===== Chapter 3 입출금 내역 분석기 확장판 ===== */
 include "chap03"
+include "chap03-webui" // spring-mvc로 webui 추가

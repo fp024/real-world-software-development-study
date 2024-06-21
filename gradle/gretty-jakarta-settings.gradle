@@ -1,0 +1,32 @@
+// gradle appRun 으로 실행
+gretty {
+  httpPort = 8080
+  contextPath = "/"
+  servletContainer = "tomcat10"
+  tomcat10ServletApiVersion = "${jakartaServletApiVersion}"
+  jvmArgs = [
+    "-Djava.security.egd=file:/dev/./urandom",
+    "--add-opens=java.base/java.io=ALL-UNNAMED",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED"
+  ]
+
+  redeployMode = "restart"
+}
+
+// In Gretty version 3.x, it was possible to run the appRun task without the /src/main/webapp directory.
+// However, strangely, in version 4.x, this directory is required.
+task createWebAppDir {
+	doLast {
+		def webAppDir = new File(project.projectDir, '/src/main/webapp')
+		if (!webAppDir.exists()) {
+			webAppDir.mkdirs()
+		}
+	}
+}
+
+project.afterEvaluate {
+	tasks.named('appRun').configure {
+		dependsOn createWebAppDir
+	}
+}

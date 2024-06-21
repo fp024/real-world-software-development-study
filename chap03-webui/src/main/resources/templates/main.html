@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>💡 Real-World Software Development - 3장 도전과제: 입출급 내역 분석기 프로그램에 GUI 추가</title>
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h2>3장 도전과제: 입출급 내역 분석기 프로그램에 GUI 추가</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">입출급 내역 분석기 프로그램에 GUI 추가</h5>
+    <p>💡 csv 파일 업로드를 해서, HTML / JSON / XML 출력이 가능하게 해야할 것 같은데... 확실히 GUI가 들어가니까 어려워짐.. 😅</p>
+    <div class="mb-3">
+      <label for="formFile" class="form-label">CSV 파일 업로드</label>
+      <input class="form-control" type="file" id="formFile">
+    </div>
+
+    <h5>출력 방식</h5>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault1" checked>
+      <label class="form-check-label" for="flexRadioDefault1">
+        HTML
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault2">
+      <label class="form-check-label" for="flexRadioDefault2">
+        JSON
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="exportType" id="flexRadioDefault3">
+      <label class="form-check-label" for="flexRadioDefault3">
+        XML
+      </label>
+    </div>
+
+    <div class="float-end">
+      <button type="button" class="btn btn-outline-primary">분석</button>
+      <button type="button" class="btn btn-outline-secondary">취소</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
