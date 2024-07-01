@@ -8,7 +8,7 @@ import org.rwsd.study.domain.BankTransaction;
 import org.rwsd.study.exporter.Exporter;
 import org.rwsd.study.parser.BankStatementParser;
 import org.rwsd.study.processor.BankTransactionProcessor;
-import org.rwsd.study.util.CommonUtil;
+import org.rwsd.study.util.FileResourceUtil;
 
 public class BankTransactionAnalyzer {
 
@@ -16,7 +16,7 @@ public class BankTransactionAnalyzer {
       String fileName, final BankStatementParser bankStatementParser, final Exporter exporter)
       throws IOException {
 
-    final Path path = CommonUtil.getFilePathFromResources(fileName);
+    final Path path = FileResourceUtil.getFilePathFromResources(fileName);
     final List<String> lines = Files.readAllLines(path);
 
     final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);

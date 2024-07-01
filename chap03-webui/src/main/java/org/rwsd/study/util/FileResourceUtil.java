@@ -1,5 +1,6 @@
 package org.rwsd.study.util;
 
+import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -7,11 +8,14 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class CommonUtil {
+public class FileResourceUtil {
 
   /** resources 경로의 파일을 로드 */
-  public static Path getFilePathFromResources(String fileName) {
-    URL resource = CommonUtil.class.getResource("/" + fileName);
+  public static Path getFilePathFromResources(String fileName) throws FileNotFoundException {
+    URL resource = FileResourceUtil.class.getResource("/" + fileName);
+    if (resource == null) {
+      throw new FileNotFoundException(fileName);
+    }
     try {
       return Path.of(resource.toURI());
     } catch (URISyntaxException e) {
